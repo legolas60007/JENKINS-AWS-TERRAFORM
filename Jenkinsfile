@@ -25,4 +25,4 @@ pipeline {
     --set prestashopHost=$APP_HOST,prestashopPassword=$APP_PASSWORD,mariadb.auth.rootPassword=$DATABASE_ROOT_PASSWORD,mariadb.auth.password=$APP_DATABASE_PASSWORD'
             }
         }
-       
+    }
