@@ -32,11 +32,6 @@ pipeline {
         }
         stage ("terraform apply") {
             steps { 
-                  when { 
-                     expression {
-                             return terraform apply
-            }
-        }
                 sh label: '', script: 'terraform apply --auto-approve'   
                 }
             }  
