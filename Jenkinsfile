@@ -5,13 +5,14 @@ pipeline {
     tools{
         terraform 'terraform'
     }
-    node {
-        stage("List S3 buckets") {
-             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                  AWS("--region=eu-west-1 s3 ls")
-    }
-  }
-}
+    withCredentials([[
+    $class: 'AmazonWebServicesCredentialsBinding',
+    credentialsId: "credentials-id-here",
+    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        ]]) {
+    /   / AWS Code
+            }
     stages {
         stage ("checkout from GIT") {
             steps {
