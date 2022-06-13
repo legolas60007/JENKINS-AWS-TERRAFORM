@@ -1,24 +1,22 @@
-@Library('github.com/releaseworks/jenkinslib') _
-
 pipeline {
     agent any
     tools{
         terraform 'terraform'
     }
-    withCredentials([[
-    $class: 'AmazonWebServicesCredentialsBinding',
-    credentialsId: "credentials-id-here",
-    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-        ]]) {
-    /   / AWS Code
-            }
+
     stages {
         stage ("checkout from GIT") {
             steps {
                 sh 'echo Checkout Correcto' 
             }
         }
+        
+        stage ("AWS CLI Credentials) {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        
         stage ("terraform init") {
             steps {
                 sh 'terraform init'
