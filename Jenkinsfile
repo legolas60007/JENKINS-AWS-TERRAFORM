@@ -22,12 +22,14 @@ pipeline {
         }
         stage ("terrafrom plan") {
             steps {         
-                sh label: '', script: 'terraform plan'
+                sh label: '', script: 'terraform plan
+                '
             }
         }
         stage ("terraform apply") {
             steps {         
                 sh label: '', script: 'terraform apply --auto-approve'   
+                testPassed = true
                 }
             }  
         }
