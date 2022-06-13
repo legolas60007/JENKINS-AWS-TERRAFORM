@@ -26,7 +26,7 @@ pipeline {
         }
         stage ("terrafrom apply") {
             steps {         
-                sh  returnStdout: true, script: 'terraform apply --auto-approve'
+                sh  returnStdout: true, script: 'terraform apply'
             }
         }
     }
