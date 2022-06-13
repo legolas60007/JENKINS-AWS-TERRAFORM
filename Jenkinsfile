@@ -3,20 +3,12 @@ pipeline {
     tools{
         terraform 'terraform'
     }
-
     stages {
         stage ("checkout from GIT") {
             steps {
                 sh 'echo Checkout Correcto' 
             }
-        }
-        
-        stage ("AWS CLI Credentials) {
-            steps {
-                sh 'terraform init'
-            }
-        }
-        
+        } 
         stage ("terraform init") {
             steps {
                 sh 'terraform init'
