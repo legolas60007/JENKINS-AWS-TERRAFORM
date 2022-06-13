@@ -9,6 +9,11 @@ pipeline {
                 sh 'echo Checkout Correcto' 
             }
         } 
+        stage ("terraform destroy") {
+            steps {
+                sh 'terraform destroy --auto-approve'
+            }
+        }
         stage ("terraform init") {
             steps {
                 sh 'terraform init'
@@ -26,9 +31,13 @@ pipeline {
             }
         }
         stage ("terraform apply") {
-            steps {         
+            steps { 
+                  when { 
+                     expression {
+                             return terraform apply
+            }
+        }
                 sh label: '', script: 'terraform apply --auto-approve'   
-                testPassed = true
                 }
             }  
         }
