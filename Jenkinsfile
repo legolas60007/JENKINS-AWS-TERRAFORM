@@ -30,10 +30,4 @@ pipeline {
                 sh  'terraform plan'
             }
         }
-        stage ("terraform apply") {
-            steps { 
-                sh label: '', script: 'terraform apply --auto-approve'   
-                }
-            }  
-        }
-}
+    }
