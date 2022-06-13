@@ -11,7 +11,7 @@ pipeline {
         } 
         stage ("terraform destroy") {
             steps {
-                sh returStatus: true, script: 'terraform destroy --auto-approve'
+                sh returnStdout: true, script: 'terraform destroy --auto-approve'
             }
         }
         stage ("terraform init") {
