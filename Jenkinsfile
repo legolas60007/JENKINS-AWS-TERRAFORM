@@ -11,17 +11,17 @@ pipeline {
         } 
         stage ("terraform init") {
             steps {
-                sh returnStdout: true, script: 'terraform init'
+                sh  'terraform init'
             }
         }
         stage ("terraform validate") {
             steps {         
-                sh returnStdout: true, script: 'terraform validate'          
+                sh 'terraform validate'          
             }
         }
         stage ("terrafrom plan") {
             steps {         
-                sh  returnStdout: true, script: 'terraform plan'
+                sh   'terraform plan'
             }
         }
         stage ("terrafrom apply") {
