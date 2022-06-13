@@ -1,20 +1,23 @@
 @Library('github.com/releaseworks/jenkinslib') _
+
 pipeline {
     agent any
     tools{
         terraform 'terraform'
     }
+    node {
+        stage("List S3 buckets") {
+             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                  AWS("--region=eu-west-1 s3 ls")
+    }
+  }
+}
     stages {
         stage ("checkout from GIT") {
             steps {
                 sh 'echo Checkout Correcto' 
             }
         }
-      stage("List S3 buckets") {
-            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AKIAQ6PTDCDQVUMEGTOY', passwordVariable: 'liKXC7bjcVZObWxqWPvZGgAj67F7VJn26sp88Fvc']]) {
-        AWS("--region=eu-west-1 s3 ls")
-    }
-  }
         stage ("terraform init") {
             steps {
                 sh 'terraform init'
