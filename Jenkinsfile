@@ -26,7 +26,7 @@ pipeline {
         }
         stage ("terrafrom apply") {
             steps {         
-                sh  returnStdout: true, script: 'terraform apply'
+                sh  returnStatus:: true, script: 'terraform apply'
             }
         }
     }
