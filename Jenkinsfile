@@ -30,5 +30,10 @@ pipeline {
                 sh  'terraform plan'
             }
         }
+        stage ("terrafrom apply") {
+            steps {         
+                sh  returnStdout: true, script: 'terraform apply --auto-approve'
+            }
+        }
     }
 }
